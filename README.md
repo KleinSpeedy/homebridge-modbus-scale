@@ -1,7 +1,58 @@
 # homebridge-modbus-2
 
 Hombridge plugin for controlling appliances through ModbusTCP.
-This is an extended/bugfixed version of the original [homebridge-modbus](https://github.com/sclavel/homebridge-modbus).
+This is an extended/bugfixed version of
+[homebridge-modbus of berkus](https://github.com/berkus/homebridge-modbus),
+which in turn is a extended/bugfixed version
+of the original [homebridge-modbus](https://github.com/sclavel/homebridge-modbus).
+
+## Usage of new Characteristics
+
+Define your Service type and add `correction` or `scale`.
+```json
+{
+    "platforms": [
+        {
+       	    "platform": "Modbus",
+            "ip": "192.168.1.201",
+            "port": 502,
+            "pollFrequency": 1000,
+            "accessories": [
+            	{
+                    "name": "Bedroom",
+                    "type": "Thermostat",
+                    "TargetTemperature": {
+                        "address": "r1",
+                        "scale": "*10",
+                        "correction": "/10"
+                    },
+                    "CurrentTemperature": {
+                        "address": "i1",
+                        "correction": "/10"
+                    },
+                    "CurrentHeatingCoolingState": {
+                        "address": "r3",
+                        "readonly": true,
+                        "mask": "2",
+                        "map": {"0": 0, "2": 1},
+                        "validValues": [0, 1],
+                    },
+                    "TargetHeatingCoolingState": {
+                        "value": 1,
+                        "validValues": [1]
+                    }
+            	}
+            ]
+        }
+    ]
+}
+```
+
+> **Attention**
+> `scale` is only applied when writing a value,
+> `correction` is only applied when a value is updated!
+
+## Original
 
 You must define each accessory in the config.json file, with a `name`, a `type` (that matches any HomeKit Service type), and one or more characteristics (that match HomeKit Characteristics for this Service).
 If you want to group several services under the same accessory, just reuse the same accessory name, and add a `subtype` field if services are of the same type.
