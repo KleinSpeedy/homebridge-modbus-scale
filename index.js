@@ -342,7 +342,14 @@ class ModbusAccessory {
     if (characteristic.props.format == 'bool') {
       val = val ? true : false;
     }
-    if (val != characteristic.value) {
+
+    // Comparing floating point numbers leads to problems!!
+    const valueChanged = (a, b) => {
+      const epsilon = 0.0001;
+      return (Math.abs(a - b) > epsilon);
+    }
+
+    if (valueChanged(val, characteristic.value)) {
       Log(this.name, characteristic.displayName, characteristic.value, "=>", val);
       characteristic.updateValue(val);
       if (map.log) {
