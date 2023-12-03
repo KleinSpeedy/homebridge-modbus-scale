@@ -299,8 +299,9 @@ class ModbusAccessory {
             if ('mask' in modbusMap) {
               val = val & modbusMap.mask;
             }
-            if ('correction' in modbusMap) {
-              val = doCorrection(val, modbusMap.correction);
+            if ('scale' in modbusMap) {
+              // use do correction, but name characteristic scale
+              val = doCorrection(val, modbusMap.scale);
             }
             this.platform.writeModbus(modbusType, modbusAdd, val);
             callback();
