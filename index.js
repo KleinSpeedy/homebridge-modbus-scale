@@ -14,14 +14,20 @@ const mathOperationsMap = {
 }
 
 function doCorrection(val, correctionString) {
-  let result = val
-  const mathLiteral = correctionString[0],
-        number = Number.parseFloat(correctionString.slice(1))
+  let result = val;
+  const mathLiteral = correctionString[0];
+  const number = Number.parseFloat(correctionString.slice(1));
+
   if (mathLiteral in mathOperationsMap) {
     const mathAction = mathOperationsMap[mathLiteral];
     result = mathAction(val, number);
   }
-  return result
+  if (mathLiteral == '/') {
+    let temp = result;
+    result = Number.parseFloat(temp.toFixed(1));
+  }
+
+  return result;
 }
 
 var Homebridge, Service, Characteristic, UUIDGen, Log, logFile;
