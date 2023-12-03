@@ -1,5 +1,5 @@
 {
-  "name": "homebridge-modbus-2",
+  "name": "homebridge-modbus-scale",
   "version": "1.0.0",
   "description": "HomeBridge Plugin for ModbusTCP",
   "keywords": [
@@ -11,15 +11,10 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/berkus/homebridge-modbus.git"
-  },
-  "author": {
-    "name": "Berkus Decker",
-    "email": "berkus+homebridge@gmail.com",
-    "url": "https://metta.systems"
+    "url": "git://github.com/KleinSpeedy/homebridge-modbus-scale.git"
   },
   "dependencies": {
-    "jsmodbus": ">=3.0.0"
+    "jsmodbus": ">=4.0.0"
   },
   "engines": {
     "node": ">=12.0.0",
