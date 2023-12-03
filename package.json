@@ -1,7 +1,7 @@
 {
   "name": "homebridge-modbus-scale",
   "version": "1.0.0",
-  "description": "HomeBridge Plugin for ModbusTCP",
+  "description": "HomeBridge Plugin for ModbusTCP including fix for correction/scale factor",
   "keywords": [
     "homebridge-plugin",
     "modbus"
@@ -17,7 +17,7 @@
     "jsmodbus": ">=4.0.0"
   },
   "engines": {
-    "node": ">=12.0.0",
+    "node": ">=14.0.0",
     "homebridge": ">=0.4.0"
   }
 }
